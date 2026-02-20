@@ -1,19 +1,19 @@
 import User from "../models/user.model.js";
 import Inquiry from "../models/inquiry.model.js";
-// import Contact from "../models/contact.model.js";
+import Contact from "../models/contact.model.js";
 
 export const getDashboardStats = async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
     const totalInquiries = await Inquiry.countDocuments();
-    // const totalContacts = await Contact.countDocuments();
+    const totalContacts = await Contact.countDocuments();
 
     res.status(200).json({
       success: true,
       data: {
         totalUsers,
         totalInquiries,
-        // totalContacts,
+        totalContacts,
       },
     });
   } catch (error) {

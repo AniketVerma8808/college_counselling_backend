@@ -9,6 +9,7 @@ import {
 } from "../controllers/inquiry.controller.js";
 
 import { createInquiryValidation } from "../validations/inquiry.validation.js";
+import roleMiddleware from "../middlewares/role.middleware.js";
 
 const router = express.Router();
 
@@ -22,6 +23,11 @@ router.post(
 
 router.get("/my-inquiries", authMiddleware, getUserInquiriesController);
 
-router.get("/admin", authMiddleware, getAllInquiriesController);
+router.get(
+  "/admin",
+  authMiddleware,
+  roleMiddleware("admin"),
+  getAllInquiriesController,
+);
 
 export default router;
